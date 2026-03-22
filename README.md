@@ -37,21 +37,21 @@ Custom VPC → Public Subnet → Route Table → Internet Gateway → EC2 Instan
 ### 1️⃣ Create VPC
 
 * Created a custom VPC with CIDR block: `10.0.0.0/16`
-* Named: `poorvs-vpc`
+* Named: `poorva-vpc`
 
 ---
 
 ### 2️⃣ Create Public Subnet
 
 * Subnet CIDR: `10.0.1.0/24`
-* Associated with `poorvs-vpc`
+* Associated with `poorva-vpc`
 
 ---
 
 ### 3️⃣ Create and Attach Internet Gateway
 
-* Created Internet Gateway: `poorvs-igw`
-* Attached it to `poorvs-vpc`
+* Created Internet Gateway: `poorva-igw`
+* Attached it to `poorva-vpc`
 
 ---
 
@@ -68,7 +68,7 @@ Custom VPC → Public Subnet → Route Table → Internet Gateway → EC2 Instan
 
 ### 5️⃣ Configure Security Group
 
-* Created security group: `poorvs-sg`
+* Created security group: `poorva-sg`
 * Allowed inbound traffic:
 
   * SSH (Port 22) → My IP
@@ -78,17 +78,17 @@ Custom VPC → Public Subnet → Route Table → Internet Gateway → EC2 Instan
 ### 6️⃣ Launch EC2 Instance
 
 * Instance Name: `ec2-vpc-demo`
-* Network: `poorvs-vpc`
+* Network: `poorva-vpc`
 * Subnet: Public Subnet
 * Auto-assign Public IP: Enabled
-* Security Group: `poorvs-sg`
+* Security Group: `poorva-sg`
 
 ---
 
 ### 7️⃣ Connect to EC2
 
 ```bash
-ssh -i your-key.pem ec2-user@your-public-ip
+ssh -i ec2_VPC.pem ec2-user@my-public-ip
 ```
 
 ---
@@ -101,15 +101,7 @@ ssh -i your-key.pem ec2-user@your-public-ip
 hostname -I
 ```
 
-* Output confirms subnet range (`10.0.1.x`)
-
-#### Test Internet Connectivity:
-
-```bash
-ping google.com
-```
-
-* Confirms Internet Gateway and routing configuration
+* Output confirms subnet range (`10.0.1.206`)
 
 ---
 
@@ -126,14 +118,15 @@ ping google.com
 ### Route table configuration
 ![RT](screenshots/RouteTable.png)
 ### Security group rules
-
+![SG](screenshots/SecurityGroup.png)
 ### EC2 launch configuration
-
+![EC2](screenshots/EC2InstanceWithVPC.png)
 ### EC2 running state
-
+![EC2Running](screenshots/Ec2_VPC.png)
 ### SSH connection
-
+![Ec2_SSH](screenshots/Ec2_VPC_ssh.png)
 ### EC2 hostname verification
+![hostname](screenshots/Ec2_VPC_hostname.png)
 
 ---
 
